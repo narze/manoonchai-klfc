@@ -13,12 +13,12 @@ let sources = import ./sources.nix;
                   (hprev.callCabal2nix "keyboard-layout-files-creator" (gitignoreSource [] ../.) {})
                   (old: {
                     buildTools = [ final.makeWrapper ];
-                    postInstall = ''
-                      # small hack to ensure locale works properly with no
-                      # environment changes on non-nixos distros
+                    # postInstall = ''
+                    #   # small hack to ensure locale works properly with no
+                    #   # environment changes on non-nixos distros
 
-                      wrapProgram $out/bin/klfc --set LOCALE_ARCHIVE ${final.glibcLocales}/lib/locale/locale-archive
-                    '';
+                    #   wrapProgram $out/bin/klfc --set LOCALE_ARCHIVE ${final.glibcLocales}/lib/locale/locale-archive
+                    # '';
                   });
               };
             };
